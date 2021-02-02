@@ -50,6 +50,7 @@ spec:
       tolerations:
 {{ toYaml .Values.dashboard.tolerations | indent 8 }}
     {{- end }}
+      priorityClassName: {{ .Values.priorityClassName }}
       terminationGracePeriodSeconds: {{ .Values.dashboard.gracePeriod }}
       containers:
       - name: "{{ template "pulsar.fullname" . }}-{{ .Values.dashboard.component }}"

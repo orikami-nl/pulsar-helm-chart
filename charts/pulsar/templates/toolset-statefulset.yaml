@@ -55,6 +55,7 @@ spec:
       tolerations:
 {{ toYaml .Values.toolset.tolerations | indent 8 }}
     {{- end }}
+      priorityClassName: {{ .Values.priorityClassName }}
       terminationGracePeriodSeconds: {{ .Values.toolset.gracePeriod }}
     {{- if and .Values.rbac.enabled .Values.rbac.psp }}
       serviceAccountName: "{{ template "pulsar.fullname" . }}-{{ .Values.proxy.component }}"

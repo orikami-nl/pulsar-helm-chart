@@ -51,6 +51,7 @@ spec:
       tolerations:
 {{ toYaml .Values.pulsar_manager.tolerations | indent 8 }}
     {{- end }}
+      priorityClassName: {{ .Values.priorityClassName }}
       terminationGracePeriodSeconds: {{ .Values.pulsar_manager.gracePeriod }}
       containers:
         - name: "{{ template "pulsar.fullname" . }}-{{ .Values.pulsar_manager.component }}"

@@ -62,6 +62,7 @@ spec:
 {{ toYaml . | indent 8 }}
 {{- end }}
     {{- end }}
+      priorityClassName: {{ .Values.priorityClassName }}
       affinity:
         {{- if and .Values.affinity.anti_affinity .Values.autorecovery.affinity.anti_affinity}}
         podAntiAffinity:
@@ -151,4 +152,3 @@ spec:
       volumes:
       {{- include "pulsar.autorecovery.certs.volumes" . | nindent 6 }}
 {{- end }}
-

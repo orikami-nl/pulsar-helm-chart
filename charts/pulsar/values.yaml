@@ -40,6 +40,8 @@ initialize: false
 ## Set cluster name
 # clusterName:
 
+priorityClassName: ""
+
 ## Pulsar Metadata Prefix
 ##
 ## By default, pulsar stores all the metadata at root path.

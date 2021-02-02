@@ -51,6 +51,7 @@ spec:
       tolerations:
 {{ toYaml .Values.prometheus.tolerations | indent 8 }}
     {{- end }}
+      priorityClassName: {{ .Values.priorityClassName }}
     {{- if or .Values.prometheus.rbac.enabled .Values.prometheus_rbac }}
       serviceAccount: "{{ template "pulsar.fullname" . }}-{{ .Values.prometheus.component }}"
     {{- end }}
