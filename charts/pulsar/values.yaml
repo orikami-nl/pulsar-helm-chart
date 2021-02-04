@@ -664,7 +664,7 @@ broker:
     # gcsManagedLedgerOffloadRegion: <region>
     # managedLedgerOffloadAutoTriggerSizeThresholdBytes: "262144000"
     # gcsServiceAccountSecret: <gcs secret>
-    gcsManagedLedgerOffloadServiceAccountKeyFile: /pulsar/gcp-service-account/key.json
+    gcsManagedLedgerOffloadServiceAccountKeyFile: /pulsar/gcs-service-account/key.json
 
   ## Broker service
   ## templates/broker-service.yaml
