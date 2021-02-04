@@ -237,11 +237,23 @@ spec:
           {{- end }}
           {{- end }}
           {{- include "pulsar.broker.certs.volumeMounts" . | nindent 10 }}
+          {{- if .Values.broker.configData.managedLedgerOffloadDriver }}
+          {{- if eq .Values.broker.configData.managedLedgerOffloadDriver "google-cloud-storage" }}
+          - name: gcs-service-account
+            readOnly: true
+            mountPath: /pulsar/gcs-service-account
+          {{- end }}
+          {{- end }}
       {{- if and .Values.rbac.enabled .Values.rbac.psp }}
         securityContext:
           readOnlyRootFilesystem: false
       {{- end }}
       volumes:
+      {{- if eq .Values.broker.configData.managedLedgerOffloadDriver "google-cloud-storage" }}
+      - name: gcs-service-account
+        secret:
+          secretName: {{ .Values.broker.configData.gcsServiceAccountSecret }}
+      {{- end }}
       {{- if .Values.auth.authentication.enabled }}
       {{- if eq .Values.auth.authentication.provider "jwt" }}
       - name: token-keys

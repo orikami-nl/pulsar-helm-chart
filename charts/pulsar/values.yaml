@@ -658,6 +658,14 @@ broker:
     managedLedgerDefaultEnsembleSize: "2"
     managedLedgerDefaultWriteQuorum: "2"
     managedLedgerDefaultAckQuorum: "2"
+    ## enable tiered storage
+    managedLedgerOffloadDriver: "" #google-cloud-storage
+    # gcsManagedLedgerOffloadBucket: <bucket name>
+    # gcsManagedLedgerOffloadRegion: <region>
+    # managedLedgerOffloadAutoTriggerSizeThresholdBytes: "262144000"
+    # gcsServiceAccountSecret: <gcs secret>
+    gcsManagedLedgerOffloadServiceAccountKeyFile: /pulsar/gcp-service-account/key.json
+
   ## Broker service
   ## templates/broker-service.yaml
   ##
