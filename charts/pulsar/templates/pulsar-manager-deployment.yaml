@@ -65,7 +65,10 @@ spec:
           - containerPort: {{ .Values.pulsar_manager.service.targetPort }}
           volumeMounts:
           - name: pulsar-manager-data
-            mountPath: /data
+            mountPath: /data          
+          - name: token-keys
+            mountPath: /pulsar/keys
+            readOnly: true
           envFrom:
           - configMapRef:
               name: "{{ template "pulsar.fullname" . }}-{{ .Values.pulsar_manager.component }}"
@@ -99,13 +102,19 @@ spec:
           {{- end }}
           {{- if .Values.pulsar_manager.secretkeySecretName }}
           - name: SECRET_KEY
-            valueFrom:
-              secretKeyRef:
-                name: "{{ .Values.pulsar_manager.secretkeySecretName }}"
-                key: SECRETKEY
+            value: /pulsar/keys/token/secret.key
           {{- end }}
       volumes:
         - name: pulsar-manager-data
           emptyDir: {}
+        {{- if .Values.pulsar_manager.secretkeySecretName }}        
+        - name: token-keys
+          secret:
+            defaultMode: 420
+            items:
+            - key: SECRETKEY
+              path: token/secret.key
+            secretName: "{{ .Values.pulsar_manager.secretkeySecretName }}"
+        {{- end }}
 
 {{- end }}
