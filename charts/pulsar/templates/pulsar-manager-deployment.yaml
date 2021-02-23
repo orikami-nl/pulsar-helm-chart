@@ -73,6 +73,9 @@ spec:
           - name: ca
             mountPath: "/pulsar/certs/ca"
             readOnly: true
+          - name: entrypoint
+            mountPath: /pulsar-manager/entrypoint.sh
+            subPath: aentrypoint.sh
           {{- end }}
           - name: application-properties
             mountPath: /pulsar-manager/pulsar-manager/application.properties
@@ -138,5 +141,11 @@ spec:
             items:
             - key: application.properties
               path: application.properties
+        - name: entrypoint
+          configMap: 
+            name: "{{ template "pulsar.fullname" . }}-{{ .Values.pulsar_manager.component }}-entrypoint"
+            items:
+            - key: entrypoint.sh
+              path: entrypoint.sh
 
 {{- end }}
