@@ -58,7 +58,7 @@ spec:
           image: "{{ .Values.images.pulsar_manager.repository }}:{{ .Values.images.pulsar_manager.tag }}"
           imagePullPolicy: {{ .Values.images.pulsar_manager.pullPolicy }}
           {{- if .Values.tls.enabled }}
-          command: [ "/pulsar-manager/entrypoint.sh" ]
+          command: [ "/pulsar-manager/entrypoint-tls.sh" ]
           {{- end }}
         {{- if .Values.pulsar_manager.resources }}
           resources:
@@ -150,5 +150,6 @@ spec:
             items:
             - key: entrypoint-tls.sh
               path: entrypoint-tls.sh
+            defaultMode: 0755
 
 {{- end }}
