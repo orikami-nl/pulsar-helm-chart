@@ -102,7 +102,7 @@ spec:
           {{- end }}
           {{- if .Values.pulsar_manager.secretkeySecretName }}
           - name: SECRET_KEY
-            value: /pulsar/keys/secret.key
+            value: file:///pulsar/keys/secret.key
           {{- end }}
       volumes:
         - name: pulsar-manager-data

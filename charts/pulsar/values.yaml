@@ -992,8 +992,8 @@ pulsar_manager:
   ## templates/pulsar-manager-service.yaml
   ##
 
-  jwt_secret: ""
-  secretkey_secret: ""
+  jwtSecretName: ""
+  secretkeySecretName: ""
 
   service:
     type: LoadBalancer
