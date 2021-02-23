@@ -203,12 +203,12 @@ data:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: "{{ template "pulsar.fullname" . }}-{{ .Values.pulsar_manager.component }}-entrypoint"
+  name: "{{ template "pulsar.fullname" . }}-{{ .Values.pulsar_manager.component }}-entrypoint-tls"
   labels:
     {{- include "pulsar.standardLabels" . | nindent 4 }}
     component: {{ .Values.pulsar_manager.component }}
 data:
-  entrypoint.sh: |-
+  entrypoint-tls.sh: |-
     #!/bin/sh
     #
     # Licensed to the Apache Software Foundation (ASF) under one

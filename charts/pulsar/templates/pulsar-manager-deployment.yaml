@@ -57,6 +57,9 @@ spec:
         - name: "{{ template "pulsar.fullname" . }}-{{ .Values.pulsar_manager.component }}"
           image: "{{ .Values.images.pulsar_manager.repository }}:{{ .Values.images.pulsar_manager.tag }}"
           imagePullPolicy: {{ .Values.images.pulsar_manager.pullPolicy }}
+          {{- if .Values.tls.enabled }}
+          command: [ "/pulsar-manager/entrypoint.sh" ]
+          {{- end }}
         {{- if .Values.pulsar_manager.resources }}
           resources:
 {{ toYaml .Values.pulsar_manager.resources | indent 12 }}
@@ -74,8 +77,8 @@ spec:
             mountPath: "/pulsar/certs/ca"
             readOnly: true
           - name: entrypoint
-            mountPath: /pulsar-manager/entrypoint.sh
-            subPath: aentrypoint.sh
+            mountPath: /pulsar-manager/entrypoint-tls.sh
+            subPath: entrypoint-tls.sh
           {{- end }}
           - name: application-properties
             mountPath: /pulsar-manager/pulsar-manager/application.properties
@@ -143,9 +146,9 @@ spec:
               path: application.properties
         - name: entrypoint
           configMap: 
-            name: "{{ template "pulsar.fullname" . }}-{{ .Values.pulsar_manager.component }}-entrypoint"
+            name: "{{ template "pulsar.fullname" . }}-{{ .Values.pulsar_manager.component }}-entrypoint-tls"
             items:
-            - key: entrypoint.sh
-              path: entrypoint.sh
+            - key: entrypoint-tls.sh
+              path: entrypoint-tls.sh
 
 {{- end }}
