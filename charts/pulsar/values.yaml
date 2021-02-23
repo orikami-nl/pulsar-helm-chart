@@ -991,6 +991,10 @@ pulsar_manager:
   ## Pulsar manager service
   ## templates/pulsar-manager-service.yaml
   ##
+
+  jwt_secret: ""
+  secretkey_secret: ""
+
   service:
     type: LoadBalancer
     port: 9527

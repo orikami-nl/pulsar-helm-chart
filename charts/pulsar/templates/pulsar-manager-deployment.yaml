@@ -90,6 +90,20 @@ spec:
                 {{- else }}
                 name: "{{ template "pulsar.fullname" . }}-{{ .Values.pulsar_manager.component }}-secret"
                 {{- end }}
+          {{- if .Values.pulsar_manager.jwtSecretName }}
+          - name: JWT_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: "{{ .Values.pulsar_manager.jwtSecretName }}"
+                key: TOKEN
+          {{- end }}
+          {{- if .Values.pulsar_manager.secretkeySecretName }}
+          - name: SECRET_KEY
+            valueFrom:
+              secretKeyRef:
+                name: "{{ .Values.pulsar_manager.secretkeySecretName }}"
+                key: SECRETKEY
+          {{- end }}
       volumes:
         - name: pulsar-manager-data
           emptyDir: {}
