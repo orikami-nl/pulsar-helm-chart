@@ -16,7 +16,6 @@
 # specific language governing permissions and limitations
 # under the License.
 #
-# Configured through Helm
 
 {{- if or .Values.components.pulsar_manager .Values.extra.pulsar_manager }}
 apiVersion: v1
@@ -122,7 +121,7 @@ data:
     backend.broker.pulsarAdmin.authPlugin=
     backend.broker.pulsarAdmin.authParams=
     backend.broker.pulsarAdmin.tlsAllowInsecureConnection=true
-    {{- if .Values.pulsar_manager.caTlsSecretName }}
+    {{- if .Values.tls.enabled }}
     backend.broker.pulsarAdmin.tlsTrustCertsFilePath=/pulsar/certs/ca/ca.crt
     {{- end }}
     backend.broker.pulsarAdmin.tlsEnableHostnameVerification=false

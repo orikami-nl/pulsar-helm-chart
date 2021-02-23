@@ -182,7 +182,7 @@ images:
     pullPolicy: IfNotPresent
   pulsar_manager:
     repository: apachepulsar/pulsar-manager
-    tag: v0.1.0
+    tag: v0.2.0
     pullPolicy: IfNotPresent
     hasCommand: false
 
@@ -994,7 +994,6 @@ pulsar_manager:
 
   jwtSecretName: ""
   secretkeySecretName: ""
-  caTlsSecretName: null
 
   service:
     type: LoadBalancer

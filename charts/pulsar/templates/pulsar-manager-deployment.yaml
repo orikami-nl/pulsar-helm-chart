@@ -69,7 +69,7 @@ spec:
           - name: token-keys
             mountPath: /pulsar/keys
             readOnly: true
-          {{- if and .Values.tls.enabled }}
+          {{- if .Values.tls.enabled }}
           - name: ca
             mountPath: "/pulsar/certs/ca"
             readOnly: true
@@ -124,7 +124,7 @@ spec:
               path: secret.key
             secretName: "{{ .Values.pulsar_manager.secretkeySecretName }}"
         {{- end }}
-        {{- if and .Values.tls.enabled }}
+        {{- if .Values.tls.enabled }}
         - name: ca
           secret:
             secretName: "{{ .Release.Name }}-ca-tls"
