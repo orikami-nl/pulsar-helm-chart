@@ -994,6 +994,7 @@ pulsar_manager:
 
   jwtSecretName: ""
   secretkeySecretName: ""
+  caTlsSecretName: null
 
   service:
     type: LoadBalancer

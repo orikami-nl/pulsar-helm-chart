@@ -69,6 +69,14 @@ spec:
           - name: token-keys
             mountPath: /pulsar/keys
             readOnly: true
+          {{- if and .Values.tls.enabled }}
+          - name: ca
+            mountPath: "/pulsar/certs/ca"
+            readOnly: true
+          {{- end }}
+          - name: application-properties
+            mountPath: /pulsar-manager/pulsar-manager/application.properties
+            subPath: application.properties
           envFrom:
           - configMapRef:
               name: "{{ template "pulsar.fullname" . }}-{{ .Values.pulsar_manager.component }}"
@@ -116,5 +124,19 @@ spec:
               path: secret.key
             secretName: "{{ .Values.pulsar_manager.secretkeySecretName }}"
         {{- end }}
+        {{- if and .Values.tls.enabled }}
+        - name: ca
+          secret:
+            secretName: "{{ .Release.Name }}-ca-tls"
+            items:
+            - key: ca.crt
+              path: ca.crt
+        {{- end }}
+        - name: application-properties
+          configMap: 
+            name: "{{ template "pulsar.fullname" . }}-{{ .Values.pulsar_manager.component }}-application-properties"
+            items:
+            - key: application.properties
+              path: application.properties
 
 {{- end }}
