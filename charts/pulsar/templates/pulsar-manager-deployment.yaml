@@ -102,7 +102,7 @@ spec:
           {{- end }}
           {{- if .Values.pulsar_manager.secretkeySecretName }}
           - name: SECRET_KEY
-            value: /pulsar/keys/token/secret.key
+            value: /pulsar/keys/secret.key
           {{- end }}
       volumes:
         - name: pulsar-manager-data
@@ -113,7 +113,7 @@ spec:
             defaultMode: 420
             items:
             - key: SECRETKEY
-              path: token/secret.key
+              path: secret.key
             secretName: "{{ .Values.pulsar_manager.secretkeySecretName }}"
         {{- end }}
 
