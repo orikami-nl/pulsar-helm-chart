@@ -89,6 +89,22 @@ spec:
           env:
           - name: PULSAR_CLUSTER
             value: {{ template "pulsar.fullname" . }}
+          {{- if .Values.pulsar_manager.postgresql }}
+          - name: DRIVER_CLASS_NAME
+            value: org.postgresql.Driver
+          - name: URL
+            value: {{ .Values.pulsar_manager.postrgesql.url }}
+          - name: USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.pulsar_manager.postrgesql.secretName }}
+                key: pulsar_manager_postgres_user
+          - name: PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.pulsar_manager.postrgesql.secretName }}
+                key: pulsar_manager_postgres_password
+          {{- end }}
           - name: USERNAME
             valueFrom:
               secretKeyRef:

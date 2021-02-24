@@ -201,7 +201,7 @@ data:
     tls.pulsar.admin.ca-certs=/pulsar/certs/ca/ca.crt
 
     # support peek message, default false
-    pulsar.peek.message=false
+    pulsar.peek.message=true
 
 ---
 

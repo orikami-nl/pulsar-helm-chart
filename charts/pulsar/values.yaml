@@ -995,6 +995,10 @@ pulsar_manager:
   jwtSecretName: ""
   secretkeySecretName: ""
 
+  # postgresql:
+  #   url: ""
+    # secretName: ""
+
   service:
     type: LoadBalancer
     port: 9527
