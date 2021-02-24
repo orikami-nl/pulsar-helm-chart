@@ -995,6 +995,9 @@ pulsar_manager:
   jwtSecretName: ""
   secretkeySecretName: ""
 
+  defaultEnvironmentName: ""
+  defaultEnvironmentServiceUrl: ""
+
   # postgresql:
   #   url: ""
     # secretName: ""
