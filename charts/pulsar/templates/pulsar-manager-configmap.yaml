@@ -189,8 +189,8 @@ data:
     spring.thymeleaf.mode=HTML5
 
     # default environment configuration
-    default.environment.name=
-    default.environment.service_url=
+    default.environment.name={{ .Values.pulsar_manager.defaultEnvironmentName }}
+    default.environment.service_url={{ .Values.pulsar_manager.defaultEnvironmentServiceUrl }}
 
     # enable tls encryption
     # keytool -import -alias test-keystore -keystore ca-certs -file certs/ca.cert.pem
