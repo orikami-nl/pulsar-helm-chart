@@ -93,16 +93,16 @@ spec:
           - name: DRIVER_CLASS_NAME
             value: org.postgresql.Driver
           - name: URL
-            value: {{ .Values.pulsar_manager.postrgesql.url }}
+            value: {{ .Values.pulsar_manager.postgresql.url }}
           - name: USERNAME
             valueFrom:
               secretKeyRef:
-                name: {{ .Values.pulsar_manager.postrgesql.secretName }}
+                name: {{ .Values.pulsar_manager.postgresql.secretName }}
                 key: pulsar_manager_postgres_user
           - name: PASSWORD
             valueFrom:
               secretKeyRef:
-                name: {{ .Values.pulsar_manager.postrgesql.secretName }}
+                name: {{ .Values.pulsar_manager.postgresql.secretName }}
                 key: pulsar_manager_postgres_password
           {{- end }}
           - name: USERNAME
