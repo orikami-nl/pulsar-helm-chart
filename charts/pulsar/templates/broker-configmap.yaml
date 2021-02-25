@@ -79,7 +79,6 @@ data:
   PF_kubernetesContainerFactory_installUserCodeDependencies: "true"
   PF_kubernetesContainerFactory_jobNamespace: {{ template "pulsar.namespace" . }}
   PF_kubernetesContainerFactory_expectedMetricsCollectionInterval: "30"
-  PF_tlsTrustCertsFilePath: /pulsar/certs/ca/ca.crt
   {{- if not (and .Values.tls.enabled .Values.tls.broker.enabled) }}
   PF_kubernetesContainerFactory_pulsarAdminUrl: "http://{{ template "pulsar.fullname" . }}-{{ .Values.broker.component }}:{{ .Values.broker.ports.http }}/"
   PF_kubernetesContainerFactory_pulsarServiceUrl: "pulsar://{{ template "pulsar.fullname" . }}-{{ .Values.broker.component }}:{{ .Values.broker.ports.pulsar }}/"
@@ -87,6 +86,7 @@ data:
   {{- if and .Values.tls.enabled .Values.tls.broker.enabled }}
   PF_kubernetesContainerFactory_pulsarAdminUrl: "https://{{ template "pulsar.fullname" . }}-{{ .Values.broker.component }}:{{ .Values.broker.ports.https }}/"
   PF_kubernetesContainerFactory_pulsarServiceUrl: "pulsar+ssl://{{ template "pulsar.fullname" . }}-{{ .Values.broker.component }}:{{ .Values.broker.ports.pulsarssl }}/"
+  PF_tlsTrustCertsFilePath: "/pulsar/certs/ca/ca.crt"
   {{- end }}
   PF_kubernetesContainerFactory_changeConfigMap: "{{ template "pulsar.fullname" . }}-{{ .Values.functions.component }}-config"
   PF_kubernetesContainerFactory_changeConfigMapNamespace: {{ template "pulsar.namespace" . }}
