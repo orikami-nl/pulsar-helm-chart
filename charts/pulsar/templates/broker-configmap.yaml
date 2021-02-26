@@ -88,7 +88,7 @@ data:
   PF_kubernetesContainerFactory_pulsarServiceUrl: "pulsar+ssl://{{ template "pulsar.fullname" . }}-{{ .Values.broker.component }}:{{ .Values.broker.ports.pulsarssl }}/"
   PF_tlsTrustCertsFilePath: "/pulsar/certs/ca/ca.crt"
   # PF_useTls: true
-  PF_tlsAllowInsecureConnection: {{ .Values.functions.tlsAllowInsecureConnection }}
+  PF_tlsAllowInsecureConnection: "{{ .Values.functions.tlsAllowInsecureConnection }}"
   {{- end }}
   PF_kubernetesContainerFactory_changeConfigMap: "{{ template "pulsar.fullname" . }}-{{ .Values.functions.component }}-config"
   PF_kubernetesContainerFactory_changeConfigMapNamespace: {{ template "pulsar.namespace" . }}
