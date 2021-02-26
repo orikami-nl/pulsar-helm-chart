@@ -687,6 +687,7 @@ broker:
 ##
 functions:
   component: functions-worker
+  tlsAllowInsecureConnection: false
 
 ## Pulsar: Proxy Cluster
 ## templates/proxy-statefulset.yaml
