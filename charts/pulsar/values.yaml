@@ -262,6 +262,10 @@ certs:
     enabled: false
     component: internal-cert-issuer
     type: selfsigning
+    # 90d
+    duration: 2160h
+    # 15d
+    renewBefore: 360h
   issuers:
     selfsigning:
 
@@ -883,6 +887,7 @@ prometheus:
   tolerations: []
   gracePeriod: 5
   port: 9090
+  enableAdminApi: false
   resources:
     requests:
       memory: 256Mi
